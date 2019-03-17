@@ -90,3 +90,5 @@ endif
 
 
 LAYOUTS = ergodox
+
+TAP_DANCE_ENABLE = yes
