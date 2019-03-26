@@ -9,6 +9,55 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 
+enum {
+ CT_POSITION = 0,
+ CT_CARP
+};
+
+
+void dance_carp (qk_tap_dance_state_t *state, void *user_data) {
+	switch(state->count){
+		case 1:
+		SEND_STRING ("suzukiseiya");
+		break;
+		case 2:
+		SEND_STRING ("tanakakousuke");
+		break;
+		case 4:
+		SEND_STRING ("kokubotetsuya");
+		break;
+		case 5:
+		SEND_STRING ("chounomasayoshi");
+		break;
+		case 6:
+		SEND_STRING ("abetomohiro");
+		break;
+		case 7:
+		SEND_STRING ("doubayashishouta");
+		break;
+		case 10:
+		SEND_STRING ("iwamototakahiro");
+		break;
+		case 12:
+		SEND_STRING ("kuriaren");
+		break;
+		case 13:
+		SEND_STRING ("yazakitakuya");
+		break;
+		case 14:
+		SEND_STRING ("ooseradaichi");
+		break;
+		case 51:
+		SEND_STRING ("kozonokaito");
+		break;
+	}
+	reset_tap_dance (state);
+}
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+	[CT_CARP] = ACTION_TAP_DANCE_FN (dance_carp)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
@@ -36,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_EQL,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
-        KC_DELT,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(SYMB),
+        KC_DELT,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(MDIA),
         KC_BSPC,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
         KC_LSFT,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
         LT(SYMB,KC_GRV),KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
@@ -80,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_TRNS,
        KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,KC_TRNS,
        KC_TRNS,KC_HASH,KC_DLR, KC_LPRN,KC_RPRN,KC_GRV,
-       KC_TRNS,KC_PERC,KC_CIRC,KC_LBRC,KC_RBRC,KC_TILD,KC_TRNS,
+       KC_TRNS,KC_PERC,KC_CIRC,TD(CT_CARP),KC_RBRC,KC_TILD,KC_TRNS,
        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
                                        KC_TRNS,KC_TRNS,
                                                KC_TRNS,
