@@ -24,7 +24,7 @@ void dance_carp (qk_tap_dance_state_t *state, void *user_data) {
 		SEND_STRING ("kokubotetsuya");
 		break;
 		case 5:
-		SEND_STRING ("chounomasayoshi");
+		SEND_STRING ("chounohisayoshi");
 		break;
 		case 6:
 		SEND_STRING ("abetomohiro");
